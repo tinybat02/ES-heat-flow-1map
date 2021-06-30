@@ -1,0 +1,21 @@
+{
+  "type": "panel",
+  "name": "ES Heat Flow Info 1 Map",
+  "id": "id-es-heat-flow-info-with-1map",
+  "dataFormats": ["table"],
+  "info": {
+    "description": "ES Heat Flow Info 1 Map",
+    "author": {
+      "name": "Nam Le"
+    },
+    "keywords": [],
+    "screenshots": [],
+    "version": "%VERSION%",
+    "updated": "%TODAY%"
+  },
+
+  "dependencies": {
+    "grafanaVersion": "6.3.x",
+    "plugins": []
+  }
+}
