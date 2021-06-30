@@ -12,7 +12,7 @@ export interface FeatureGeojson {
   };
   geometry: {
     type: string;
-    coordinates: number[][][];
+    coordinates: any;
   };
 }
 

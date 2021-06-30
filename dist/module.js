@@ -55892,8 +55892,8 @@ var createPolygonInfo = function createPolygonInfo(feature, label, color) {
 var createPolygonLayer = function createPolygonLayer(geojson) {
   var polygons = [];
   geojson.features.map(function (feature) {
-    if (feature.properties && feature.properties.name && feature.geometry.type == 'Polygon') {
-      polygons.push(createTransparentPolygon(feature.geometry.coordinates, feature.properties.name));
+    if (feature.properties && feature.properties.name) {
+      if (feature.geometry.type == 'Polygon') polygons.push(createTransparentPolygon(feature.geometry.coordinates, feature.properties.name));else if (feature.geometry.type == 'LineString') polygons.push(createTransparentPolygon([feature.geometry.coordinates], feature.properties.name));
     }
   });
   return new ol_layer__WEBPACK_IMPORTED_MODULE_1__["Vector"]({

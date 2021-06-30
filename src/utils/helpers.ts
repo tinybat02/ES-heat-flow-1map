@@ -20,7 +20,7 @@ const measureObj = (obj: { [key: string]: number }) => {
   };
 };
 
-export const createTransparentPolygon = (coordinates: number[][][], label: string) => {
+export const createTransparentPolygon = (coordinates: any, label: string) => {
   const polygonFeature = new Feature({
     type: 'Polygon',
     geometry: new Polygon(coordinates).transform('EPSG:4326', 'EPSG:3857'),
@@ -64,8 +64,11 @@ export const createPolygonLayer = (geojson: GeoJSON) => {
   const polygons: Feature[] = [];
 
   geojson.features.map(feature => {
-    if (feature.properties && feature.properties.name && feature.geometry.type == 'Polygon') {
-      polygons.push(createTransparentPolygon(feature.geometry.coordinates, feature.properties.name));
+    if (feature.properties && feature.properties.name) {
+      if (feature.geometry.type == 'Polygon')
+        polygons.push(createTransparentPolygon(feature.geometry.coordinates, feature.properties.name));
+      else if (feature.geometry.type == 'LineString')
+        polygons.push(createTransparentPolygon([feature.geometry.coordinates], feature.properties.name));
     }
   });
 
