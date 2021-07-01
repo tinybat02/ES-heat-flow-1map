@@ -55870,9 +55870,11 @@ var createTransparentPolygon = function createTransparentPolygon(coordinates, la
   return polygonFeature;
 };
 var createPolygonInfo = function createPolygonInfo(feature, label, color) {
+  var coordinates = feature.geometry.coordinates;
+  if (feature.geometry.type == 'LineString') coordinates = [feature.geometry.coordinates];
   var polygonFeature = new ol_Feature__WEBPACK_IMPORTED_MODULE_3__["default"]({
     type: 'Polygon',
-    geometry: new ol_geom_Polygon__WEBPACK_IMPORTED_MODULE_4__["default"](feature.geometry.coordinates).transform('EPSG:4326', 'EPSG:3857')
+    geometry: new ol_geom_Polygon__WEBPACK_IMPORTED_MODULE_4__["default"](coordinates).transform('EPSG:4326', 'EPSG:3857')
   });
   polygonFeature.setStyle(new ol_style__WEBPACK_IMPORTED_MODULE_5__["Style"]({
     fill: new ol_style__WEBPACK_IMPORTED_MODULE_5__["Fill"]({

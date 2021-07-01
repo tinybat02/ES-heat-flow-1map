@@ -37,9 +37,12 @@ export const createTransparentPolygon = (coordinates: any, label: string) => {
 };
 
 export const createPolygonInfo = (feature: FeatureGeojson, label: string, color: string) => {
+  let coordinates = feature.geometry.coordinates;
+  if (feature.geometry.type == 'LineString') coordinates = [feature.geometry.coordinates];
+
   const polygonFeature = new Feature({
     type: 'Polygon',
-    geometry: new Polygon(feature.geometry.coordinates).transform('EPSG:4326', 'EPSG:3857'),
+    geometry: new Polygon(coordinates).transform('EPSG:4326', 'EPSG:3857'),
   });
 
   polygonFeature.setStyle(
